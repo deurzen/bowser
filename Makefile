@@ -21,7 +21,7 @@ notify-link:
 	@echo
 	@echo linking
 
-build: notify-build bin obj ${OBJ_FILES} notify-link
+build: notify-build bin obj ${OBJ_FILES} notify-link tags deps
 	${CC} ${CXXFLAGS} ${OBJ_FILES} ${LDFLAGS} -o ${TARGET}
 
 -include $(DEPS)
@@ -31,15 +31,18 @@ obj/%.o: src/%.cc
 	${CC} ${CXXFLAGS} -MMD -c $< -o $@
 
 run:
-	@echo
 	@echo -n running
 	@./${BIN}
 
 .PHONY: tags
 tags:
-	@echo
 	@echo generating tags
 	@ctags -R --exclude=.git --c++-kinds=+p --fields=+iaS --extras=+q .
+
+.PHONY: deps
+deps:
+	@echo gathering deps
+	@echo ${CXXFLAGS} | tr " " "\n" >| .ccls
 
 .PHONY: clean
 clean:

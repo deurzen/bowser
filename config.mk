@@ -15,10 +15,11 @@ BIN = bin/$(PROJECT)
 INSTALL = /usr/local/bin/
 TARGET ?= $(BIN)
 
+DEPS = Qt5Widgets Qt5WebEngineWidgets Qt5Gui Qt5Core
 CXXFLAGS ?= -std=c++17 -fPIC
-CXXFLAGS += `pkg-config --cflags Qt5Widgets`
+CXXFLAGS += `pkg-config --cflags ${DEPS}` -I./include
 
-LDFLAGS += `pkg-config --libs Qt5Widgets`
+LDFLAGS += `pkg-config --libs ${DEPS}`
 
 DEBUG_FLAGS = -Wall -g -DDEBUG
 
