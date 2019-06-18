@@ -60,14 +60,17 @@ public:
             ::std::move(it + 1, opts.end(), ::std::back_inserter(args));
             opts.erase(it, opts.end());
         }
+
+        parse();
     }
 
-    void parse();
     void setopt(::std::string, ::std::string = "");
 
-    ::std::pair<int, ::std::vector<char*>> getargs();
+    ::std::vector<char*> getargs();
 
 private:
+    void parse();
+
     ::std::vector<::std::string> opts;
     ::std::vector<::std::string> args;
 

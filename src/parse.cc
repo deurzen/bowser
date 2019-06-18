@@ -32,12 +32,12 @@ parser_t::setopt(::std::string flag, ::std::string value)
         }
 }
 
-::std::pair<int, ::std::vector<char*>>
+::std::vector<char*>
 parser_t::getargs()
 {
     ::std::vector<char*> raw;
     for (auto& s : args)
         raw.push_back(convert_new(s));
 
-    return {raw.size(), raw};
+    return raw;
 }
