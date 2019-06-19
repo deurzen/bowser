@@ -21,10 +21,10 @@ build: bin obj ${OBJ_FILES} tags deps
 
 obj/%.o: obj
 obj/%.o: src/%.cc
-	${CC} ${CXXFLAGS} -MMD -c $< -o $@
+	${CC} ${CXXFLAGS} -MMD -MP -c $< -o $@
 
 obj/%.o: src/browser/%.cc
-	${CC} ${CXXFLAGS} -MMD -c $< -o $@
+	${CC} ${CXXFLAGS} -MMD -MP -c $< -o $@
 
 %.moc.cc: %.hh
 	moc $< -o $@
@@ -44,4 +44,4 @@ deps:
 .PHONY: clean
 clean:
 	@echo cleaning
-	@rm -rf ./bin ./release ./obj
+	@rm -rf ./bin ./release ./obj ./src/browser/*.moc.cc

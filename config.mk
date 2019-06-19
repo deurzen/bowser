@@ -3,7 +3,7 @@ PROJECT = bowser
 OBJDIR = obj
 SRCDIR = src
 
-MOC_H_FILES   := src/browser/window.hh src/browser/tab.hh src/browser/status.hh
+MOC_H_FILES   := $(shell ag -l Q_OBJECT src | tr "\n" " ")
 MOC_SRC_FILES := $(MOC_H_FILES:.hh=.moc.cc)
 MOC_OBJ_FILES := $(patsubst src/browser/%.moc.cc,obj/%.moc.o,${MOC_SRC_FILES})
 
@@ -22,7 +22,7 @@ BIN = bin/$(PROJECT)
 INSTALL = /usr/local/bin/
 TARGET ?= $(BIN)
 
-DEPS = Qt5Widgets Qt5WebEngineWidgets Qt5Gui Qt5Core Qt5WebEngine
+DEPS = Qt5{Widgets,WebEngineWidgets,Gui,Core,WebEngine}
 CXXFLAGS ?= -std=c++17 -fPIC
 CXXFLAGS += `pkg-config --cflags ${DEPS}`
 
