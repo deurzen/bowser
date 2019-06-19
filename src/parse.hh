@@ -39,8 +39,8 @@ class parser_t
 {
 public:
     parser_t(int argc, char** argv)
-        : opts(argv, argv + argc),
-          optlist({
+        : m_opts(argv, argv + argc),
+          m_optlist({
               // short options           flag           description
               { option_type_t::shortopt, "h",           "print help message"                 },
               { option_type_t::shortopt, "v",           "print version information and quit" },
@@ -52,30 +52,27 @@ public:
               { option_type_t::longopt,  "config-path", "path to configuration file",         true  },
           })
     {
-        for (auto& opt : optlist)
-            optmap[opt.flag] = opt;
+        for (auto& opt : m_optlist)
+            m_optmap[opt.flag] = opt;
 
         ::std::vector<::std::string>::iterator it;
-        if ((it = ::std::find(opts.begin(), opts.end(), "--")) != opts.end()) {
-            ::std::move(it + 1, opts.end(), ::std::back_inserter(args));
-            opts.erase(it, opts.end());
+        if ((it = ::std::find(m_opts.begin(), m_opts.end(), "--")) != m_opts.end()) {
+            ::std::move(it + 1, m_opts.end(), ::std::back_inserter(m_args));
+            m_opts.erase(it, m_opts.end());
         }
-
-        parse();
     }
 
+    void parse();
     void setopt(::std::string, ::std::string = "");
 
-    ::std::vector<char*> getargs();
+    ::std::pair<int, ::std::vector<char*>> getargs();
 
 private:
-    void parse();
+    ::std::vector<::std::string> m_opts;
+    ::std::vector<::std::string> m_args;
 
-    ::std::vector<::std::string> opts;
-    ::std::vector<::std::string> args;
-
-    ::std::vector<option_t> optlist;
-    ::std::unordered_map<::std::string, option_t> optmap;
+    ::std::vector<option_t> m_optlist;
+    ::std::unordered_map<::std::string, option_t> m_optmap;
 
 };
 

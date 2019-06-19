@@ -4,6 +4,8 @@
 #include "common.hh"
 #include "parse.hh"
 
+#include "browser/window.hh"
+
 #include <QApplication>
 
 #include <memory>
@@ -15,11 +17,13 @@ class bowser_t
 {
 public:
     bowser_t(int argc, char** argv)
-        : parser{argc, argv},
-          args{parser.getargs()},
-          argc{static_cast<int>(args.size())},
-          app{argc, args.data()}
-    {}
+        : m_parser(argc, argv)
+    {
+        m_parser.parse();
+        ::std::tie(m_argc, m_args) = m_parser.getargs();
+        m_app = new QApplication(m_argc, m_args.data());
+        m_instances.push_back(new window_t());
+    }
 
     void setup();
     void run();
@@ -27,11 +31,13 @@ public:
     static ::std::unique_ptr<bowser_t> init(int, char**);
 
 private:
-    QApplication app;
-    parser_t parser;
+    QApplication* m_app;
+    parser_t m_parser;
 
-    int argc;
-    ::std::vector<char*> args;
+    int m_argc;
+    ::std::vector<char*> m_args;
+
+    ::std::vector<window_ptr_t> m_instances;
 
 };
 
