@@ -3,6 +3,7 @@
 
 #include <string>
 
+
 const ::std::string BROWSER_NAME    = "bowser";
 const ::std::string BROWSER_VERSION = "v1.0";
 

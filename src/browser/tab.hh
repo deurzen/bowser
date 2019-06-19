@@ -8,26 +8,26 @@
 #include <QWidget>
 
 
-typedef class tab_t : public QWidget
+typedef class tab_t : public QWebEngineView
 {
     Q_OBJECT
 
 public:
     tab_t(QWidget& parent)
-        : m_view(&parent)
+        : QWebEngineView(&parent),
+          m_parent(parent)
     {
-        m_view.move(0, TAB_HEIGHT);
-        m_view.resize(parent.size().width(), parent.size().height() - TAB_HEIGHT - STATUSBAR_HEIGHT);
-        m_view.setUrl(QUrl("https://deurzen.net"));
+        QWebEngineView::setUrl(QUrl("https://youtube.com"));
+        QWebEngineView::move(0, TAB_HEIGHT);
+        resize();
     }
 
     virtual ~tab_t() {}
 
-    inline void show() { m_view.show(); }
-    inline void hide() { m_view.hide(); }
+    void resize();
 
 private:
-    QWebEngineView m_view;
+    QWidget& m_parent;
 
 }* tab_ptr_t;
 

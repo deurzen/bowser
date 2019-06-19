@@ -1,5 +1,6 @@
 #include "util.hh"
 
+
 char*
 convert_new(const ::std::string& s)
 {

@@ -23,7 +23,7 @@ bowser_t::setup()
     m_app->setApplicationName(BROWSER_NAME.c_str());
     m_app->setDesktopFileName(("org." + BROWSER_NAME + "." + BROWSER_NAME).c_str());
     m_app->setApplicationVersion(BROWSER_VERSION.c_str());
-    m_app->setQuitOnLastWindowClosed(false);
+    m_app->setQuitOnLastWindowClosed(true);
     ::QtWebEngine::initialize();
 }
 

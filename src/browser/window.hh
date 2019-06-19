@@ -17,12 +17,12 @@ typedef class window_t : public QWidget
 
 public:
     window_t()
-        : m_main()
+        : m_statusbar(new status_t(*this))
     {
-        m_main.resize(800, 600);
-        m_main.setWindowTitle(BROWSER_NAME.c_str());
+        QWidget::resize(800, 600);
+        QWidget::setWindowTitle(BROWSER_NAME.c_str());
 
-        m_tabs.push_back((m_current_tab = new tab_t{m_main}));
+        m_tabs.push_back((m_current_tab = new tab_t{*this}));
         show();
     }
 
@@ -32,8 +32,8 @@ public:
             delete tab;
     }
 
-    inline void show() { m_main.show(); }
-    inline void hide() { m_main.hide(); }
+protected:
+    void resizeEvent(QResizeEvent*) override;
 
 private slots:
     void on_url_send();
@@ -44,11 +44,9 @@ private slots:
     void on_forward();
 
 private:
-    QWidget m_main;
-
     tab_ptr_t m_current_tab;
     ::std::vector<tab_ptr_t> m_tabs;
-    status_t m_statusbar;
+    status_ptr_t m_statusbar;
 
 }* window_ptr_t;
 

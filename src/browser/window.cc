@@ -1,5 +1,16 @@
 #include "window.hh"
 
+#include <QResizeEvent>
+
+
+void
+window_t::resizeEvent(QResizeEvent* event)
+{
+    QWidget::resizeEvent(event);
+    m_current_tab->resize();
+    m_statusbar->resize();
+}
+
 void
 window_t::on_url_send()
 {
