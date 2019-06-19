@@ -14,14 +14,7 @@ bin:
 obj:
 	@[ -d obj ] || mkdir obj
 
-notify-build:
-	@echo building
-
-notify-link:
-	@echo
-	@echo linking
-
-build: notify-build bin obj ${OBJ_FILES} notify-link tags deps
+build: bin obj ${OBJ_FILES} tags deps
 	${CC} ${CXXFLAGS} ${OBJ_FILES} ${LDFLAGS} -o ${TARGET}
 
 -include $(DEPS)
@@ -30,18 +23,22 @@ obj/%.o: obj
 obj/%.o: src/%.cc
 	${CC} ${CXXFLAGS} -MMD -c $< -o $@
 
+obj/%.o: src/browser/%.cc
+	${CC} ${CXXFLAGS} -MMD -c $< -o $@
+
+%.moc.cc: %.hh
+	moc $< -o $@
+
 run:
 	@echo -n running
 	@./${BIN}
 
 .PHONY: tags
 tags:
-	@echo generating tags
 	@ctags -R --exclude=.git --c++-kinds=+p --fields=+iaS --extras=+q .
 
 .PHONY: deps
 deps:
-	@echo gathering deps
 	@echo ${CXXFLAGS} | tr " " "\n" >| .ccls
 
 .PHONY: clean

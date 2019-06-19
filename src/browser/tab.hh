@@ -10,6 +10,8 @@
 
 typedef class tab_t : public QWidget
 {
+    Q_OBJECT
+
 public:
     tab_t(QWidget& parent)
         : m_view(&parent)

@@ -13,6 +13,8 @@
 
 typedef class window_t : public QWidget
 {
+    Q_OBJECT
+
 public:
     window_t()
         : m_main()
