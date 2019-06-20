@@ -1,5 +1,7 @@
 #include "tab.hh"
 
+#include <QString>
+
 
 void
 tab_t::resize()
@@ -8,4 +10,13 @@ tab_t::resize()
     if (size.height() > TAB_HEIGHT + STATUSBAR_HEIGHT)
         QWebEngineView::resize(size.width(),
             size.height() - TAB_HEIGHT - STATUSBAR_HEIGHT);
+}
+
+void
+tab_t::open(QUrl url)
+{
+    if (!url.isValid())
+        return;
+
+    QWebEngineView::load(url);
 }

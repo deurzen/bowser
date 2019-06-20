@@ -3,8 +3,8 @@
 
 #include "../common.hh"
 
-#include "tab.hh"
-#include "status.hh"
+#include "tabbar/tab.hh"
+#include "statusbar/status.hh"
 
 #include <QWidget>
 
@@ -21,6 +21,8 @@ public:
     {
         QWidget::resize(800, 600);
         QWidget::setWindowTitle(BROWSER_NAME.c_str());
+
+        m_statusbar->resize();
 
         m_tabs.push_back((m_current_tab = new tab_t{*this}));
         show();

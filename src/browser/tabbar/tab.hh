@@ -1,9 +1,9 @@
 #ifndef __BOWSER__BROWSER__TAB__GUARD__
 #define __BOWSER__BROWSER__TAB__GUARD__
 
-#include "../decoration.hh"
+#include "../../decoration.hh"
 
-#include <QtCore/QUrl>
+#include <QUrl>
 #include <QWebEngineView>
 #include <QWidget>
 
@@ -25,6 +25,8 @@ public:
     virtual ~tab_t() {}
 
     void resize();
+
+    void open(QUrl);
 
 private:
     QWidget& m_parent;

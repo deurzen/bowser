@@ -2,7 +2,6 @@
 
 #include <QResizeEvent>
 
-
 void
 window_t::resizeEvent(QResizeEvent* event)
 {
@@ -14,7 +13,6 @@ window_t::resizeEvent(QResizeEvent* event)
 void
 window_t::on_url_send()
 {
-
 }
 
 void
