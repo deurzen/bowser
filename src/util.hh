@@ -7,4 +7,8 @@
 char* convert_new(const ::std::string&);
 const char* convert(const ::std::string&);
 
+class QString;
+class QUrl;
+QString safe_displaystring(QUrl);
+
 #endif//__BOWSER__UTIL__GUARD__
