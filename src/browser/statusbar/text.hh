@@ -3,8 +3,6 @@
 
 #include "textbase.hh"
 
-#include <QWidget>
-
 
 class text_t : public textbase_t
 {

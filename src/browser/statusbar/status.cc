@@ -2,6 +2,18 @@
 
 
 void
+status_t::on_tab_change()
+{
+
+}
+
+void
+status_t::on_set_text(const QString& text)
+{
+    m_text.setText(text);
+}
+
+void
 status_t::resize()
 {
     auto size = m_parent.size();

@@ -46,10 +46,15 @@ public:
         m_layout.addWidget(&m_backforward);
         m_layout.addWidget(&m_tabindex);
         m_layout.addWidget(&m_progress);
+        QWidget::setLayout(&m_layout);
     }
 
     void resize();
     void draw();
+
+protected slots:
+    void on_tab_change();
+    void on_set_text(const QString&);
 
 private:
     QWidget& m_parent;
