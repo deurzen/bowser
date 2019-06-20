@@ -1,5 +1,5 @@
-#ifndef __BOWSER__BROWSER__TAB__GUARD__
-#define __BOWSER__BROWSER__TAB__GUARD__
+#ifndef __BOWSER__BROWSER__STATUSBAR__TAB__GUARD__
+#define __BOWSER__BROWSER__STATUSBAR__TAB__GUARD__
 
 #include "../../decoration.hh"
 
@@ -33,4 +33,4 @@ private:
 
 }* tab_ptr_t;
 
-#endif//__BOWSER__BROWSER__TAB__GUARD__
+#endif//__BOWSER__BROWSER__STATUSBAR__TAB__GUARD__

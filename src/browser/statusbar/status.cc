@@ -10,3 +10,9 @@ status_t::resize()
         QWidget::resize(size.width(), STATUSBAR_HEIGHT);
     }
 }
+
+void
+status_t::draw()
+{
+
+}
