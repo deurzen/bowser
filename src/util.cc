@@ -30,7 +30,7 @@ safe_displaystring(QUrl url)
     auto end = host_str.find(".");
 
     while (end != ::std::string::npos) {
-        if (!host_str.substr(pos, end - pos).compare("xn--") && host.compare(url.host(QUrl::FullyDecoded)))
+        if (!host_str.substr(pos, end - pos).rfind("xn--", pos) && host.compare(url.host(QUrl::FullyDecoded)))
             return "(" + host + ") " + url.toDisplayString();
         pos = end + 1;
         end = host_str.find(".");

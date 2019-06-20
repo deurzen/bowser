@@ -7,25 +7,25 @@ void
 url_t::update()
 {
     if (!m_hover.isEmpty()) {
-        ;// TODO settext
+        textbase_t::setText(m_hover.toString());
         m_type = urltype_t::hover;
     } else if (!m_loaded.isEmpty()) {
-        ;// TODO settext
-        m_type = urltype_t::normal; // TODO which normal type? check header m_type (should be conditionally set to something else (http, https, ...))!
+        textbase_t::setText(m_loaded.toString());
+        m_type = m_status;
     } else {
-        ;// TODO settext empty
+        textbase_t::setText("");
         m_type = urltype_t::normal;
     }
 }
 
 void
-url_t::change(QUrl url) // tab changed
+url_t::on_tab_change(QUrl url) // tab changed
 {
 
 }
 
 void
-url_t::on_load_status_changed() // add loadstatus
+url_t::on_status_change() // add loadstatus
 {
 
 }
@@ -40,7 +40,7 @@ url_t::on_set_loaded(QUrl url)
     else
         m_loaded = safe_displaystring(url);
 
-    m_type = urltype_t::normal;
+    m_status = urltype_t::normal;
     update();
 }
 
