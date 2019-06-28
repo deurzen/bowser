@@ -20,7 +20,7 @@ public:
         : m_parser(argc, argv)
     {
         m_parser.parse();
-        ::std::tie(m_argc, m_args) = m_parser.getargs();
+        auto&&[m_argc, m_args] = m_parser.getargs();
         m_app = new QApplication(m_argc, m_args.data());
         m_instances.push_back(new window_t());
     }
