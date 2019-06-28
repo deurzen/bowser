@@ -30,11 +30,14 @@ INSTALL = /usr/local/bin/
 TARGET ?= $(BIN)
 
 PKGDEPS = Qt5{Widgets,WebEngineWidgets,Core,WebEngine}
-CXXFLAGS ?= -std=c++17 -fPIC
+SANFLAGS ?= -fsanitize=undefined -fsanitize=address -fsanitize-address-use-after-scope
+
+CXXFLAGS ?= -std=c++17 -fPIC ${SANFLAGS}
 CXXFLAGS += `pkg-config --cflags ${PKGDEPS}`
 
+LDFLAGS ?= ${SANFLAGS}
 LDFLAGS += `pkg-config --libs ${PKGDEPS}`
 
-DEBUG_FLAGS = -Wall -g -DDEBUG
+DEBUG_FLAGS = -Wall -DDEBUG
 
 CC = g++
