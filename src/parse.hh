@@ -27,7 +27,7 @@ struct option_t
           set(false)
     {}
 
-    option_type_t type;
+    option_type_t type = shortopt;
     ::std::string flag;
     ::std::string desc;
     ::std::string value;
