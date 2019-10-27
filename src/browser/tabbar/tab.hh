@@ -17,7 +17,6 @@ public:
         : QWebEngineView(&parent),
           m_parent(parent)
     {
-        QWebEngineView::setUrl(QUrl("https://youtube.com"));
         QWebEngineView::move(0, TAB_HEIGHT);
         resize();
     }
@@ -26,6 +25,7 @@ public:
 
     void resize();
 
+    void open(const ::std::string&&);
     void open(QUrl);
 
 private:

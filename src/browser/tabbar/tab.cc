@@ -13,6 +13,12 @@ tab_t::resize()
 }
 
 void
+tab_t::open(const ::std::string&& url)
+{
+    open(QUrl(url.c_str()));
+}
+
+void
 tab_t::open(QUrl url)
 {
     if (!url.isValid())

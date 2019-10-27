@@ -25,6 +25,8 @@ public:
         m_statusbar->resize();
 
         m_tabs.push_back((m_current_tab = new tab_t{*this}));
+        m_tabs.front()->open(DEFAULT_HOMEPAGE.c_str());
+
         show();
     }
 
