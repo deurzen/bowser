@@ -25,19 +25,27 @@ public:
         m_instances.push_back(new window_t());
     }
 
+    ~bowser_t()
+    {
+        for (size_t i = 0; i < m_instances.size(); ++i)
+            delete m_instances[i];
+
+        delete m_app;
+    }
+
     void setup();
     void run();
 
-    static ::std::unique_ptr<bowser_t> init(int, char**);
+    static std::unique_ptr<bowser_t> init(int, char**);
 
 private:
     QApplication* m_app;
     parser_t m_parser;
 
     int m_argc;
-    ::std::vector<char*> m_args;
+    std::vector<char*> m_args;
 
-    ::std::vector<window_ptr_t> m_instances;
+    std::vector<window_ptr_t> m_instances;
 
 };
 

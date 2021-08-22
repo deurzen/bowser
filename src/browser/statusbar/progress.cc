@@ -18,6 +18,7 @@ void
 progress_t::on_progress(int value)
 {
     QProgressBar::setValue(value);
+
     if (value == 100)
         QProgressBar::hide();
 }

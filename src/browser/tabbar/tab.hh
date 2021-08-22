@@ -25,7 +25,7 @@ public:
 
     void resize();
 
-    void open(const ::std::string&&);
+    void open(const std::string&&);
     void open(QUrl);
 
 private:

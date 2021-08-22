@@ -45,7 +45,7 @@ url_t::on_set_loaded(QUrl url)
 }
 
 void
-url_t::on_set_hover(::std::string& link)
+url_t::on_set_hover(std::string& link)
 {
     if (link.empty()) {
         m_hover.clear();

@@ -32,8 +32,8 @@ public:
 
     virtual ~window_t()
     {
-        for (auto& tab : m_tabs)
-            delete tab;
+        for (size_t i = 0; i < m_tabs.size(); ++i)
+            delete m_tabs[i];
     }
 
 protected:
@@ -49,7 +49,7 @@ private slots:
 
 private:
     tab_ptr_t m_current_tab;
-    ::std::vector<tab_ptr_t> m_tabs;
+    std::vector<tab_ptr_t> m_tabs;
     status_ptr_t m_statusbar;
 
 }* window_ptr_t;

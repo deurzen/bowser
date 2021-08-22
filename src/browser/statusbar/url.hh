@@ -7,7 +7,15 @@
 #include <QUrl>
 
 
-enum class urltype_t { success, success_https, error, warn, hover, normal };
+enum class urltype_t
+{
+    success,
+    success_https,
+    error,
+    warn,
+    hover,
+    normal
+};
 
 class url_t : public textbase_t
 {
@@ -31,7 +39,7 @@ public:
 protected slots:
     void on_status_change();
     void on_set_loaded(QUrl);
-    void on_set_hover(::std::string&);
+    void on_set_hover(std::string&);
 
 private:
     QWidget& m_parent;
